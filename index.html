@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Tower Defense</title>
+    <!-- Gắn file Phông chữ Game -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Gắn file CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h1>Advanced Tower Defense</h1>
+
+    <div id="top-ui" class="wood-panel">
+        <div class="stat">♥️ HP: <span id="hp-display">20</span></div>
+        <div class="stat">🌊 Wave: <span id="wave-display">1</span></div>
+        <div class="stat">💰 Coins: <span id="coins-display">200</span></div>
+        <button id="start-wave-btn" class="btn-primary" onclick="waveManager.startNext()">Start Next Wave</button>
+    </div>
+
+    <div id="main-layout">
+        <div id="game-section">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            
+            <div id="spells-bar">
+                <button class="spell-btn" id="btn-bomb" onclick="spells.toggleTargeting('bomb')">
+                    💥 AOE Bomb (30s)
+                    <div class="cooldown-overlay" id="cd-bomb"></div>
+                </button>
+                <button class="spell-btn" id="btn-spikes" onclick="spells.toggleTargeting('spikes')">
+                    🚧 Ground Spikes (20s)
+                    <div class="cooldown-overlay" id="cd-spikes"></div>
+                </button>
+            </div>
+        </div>
+
+        <div id="sidebar" class="wood-panel">
+            <h2 class="shop-header">Shop <small style="font-size: 0.8rem; font-weight: normal; color: #f1c40f;">(Drag & Drop)</small></h2>
+            
+            <div class="shop-item" draggable="true" data-type="basic" data-cost="50">
+                <div><h4>Basic</h4><p>Fast Single Target</p></div>
+                <div class="cost">50 💰</div>
+            </div>
+            <div class="shop-item" draggable="true" data-type="aoe" data-cost="100">
+                <div><h4>AOE</h4><p>Explosive Splash</p></div>
+                <div class="cost">100 💰</div>
+            </div>
+            <div class="shop-item" draggable="true" data-type="slow" data-cost="80">
+                <div><h4>Slow</h4><p>Freezes Enemies</p></div>
+                <div class="cost">80 💰</div>
+            </div>
+            <div class="shop-item" draggable="true" data-type="poison" data-cost="120">
+                <div><h4>Poison</h4><p>Armor-Piercing DOT</p></div>
+                <div class="cost">120 💰</div>
+            </div>
+
+            <div id="upgrade-panel">
+                <h3>Upgrade</h3>
+                <p id="upgrade-target-name">Tower (Lv. 1)</p>
+                <button class="up-btn" id="up-range" onclick="upgradeManager.buy('range')">Range</button>
+                <button class="up-btn" id="up-damage" onclick="upgradeManager.buy('damage')">Damage</button>
+                <button class="up-btn" id="up-speed" onclick="upgradeManager.buy('speed')">Attack Speed</button>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="sell-btn" style="margin-top: 0; flex: 1;" onclick="upgradeManager.sell()">Sell (50%)</button>
+                    <button class="btn-primary" id="move-btn" style="flex: 1; padding: 10px; font-size: 0.95rem;" onclick="upgradeManager.relocateTower()">Move</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TẢI CÁC TỆP SCRIPT TUẦN TỰ -->
+    <script src="js/config.js"></script>
+    <script src="js/systems/Particles.js"></script>
+    <script src="js/entities/Enemy.js"></script>
+    <script src="js/entities/Projectile.js"></script>
+    <script src="js/entities/Tower.js"></script>
+    <script src="js/systems/Managers.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

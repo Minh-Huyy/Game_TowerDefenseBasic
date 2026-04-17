@@ -1,0 +1,256 @@
+:root {
+    --bg-color: #1a1a24;
+    --panel-wood-dark: #3b2818;
+    --panel-wood-light: #5c3a21;
+    --canvas-bg: #558b2f; /* Deep grass green */
+    --text-light: #ffeaa7;
+    --text-white: #ffffff;
+    --accent-red: #c0392b;
+    --accent-red-hover: #e74c3c;
+    --accent-blue: #2980b9;
+    --accent-blue-hover: #3498db;
+    --accent-green: #27ae60;
+    --highlight-gold: #f39c12;
+    --border-color: #2c1a0f;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at center, #2c3e50 0%, #1a1a24 100%);
+    color: var(--text-light);
+    font-family: 'Fredoka', 'Segoe UI', Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+}
+
+h1 { 
+    margin: 0 0 15px 0; 
+    text-transform: uppercase; 
+    font-size: 2.8rem; 
+    letter-spacing: 3px;
+    color: var(--highlight-gold);
+    text-shadow: 0 4px 0 var(--border-color), 0 0 10px rgba(243, 156, 18, 0.5);
+    font-weight: 700;
+}
+
+/* Wood Panel Styling */
+.wood-panel {
+    background: linear-gradient(180deg, var(--panel-wood-light) 0%, var(--panel-wood-dark) 100%);
+    border: 4px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 
+        inset 0 2px 5px rgba(255,255,255,0.2), 
+        0 8px 15px rgba(0,0,0,0.6);
+}
+
+#top-ui {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1080px; 
+    padding: 15px 30px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.stat { 
+    font-size: 1.5rem; 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    text-shadow: 2px 2px 0 #000;
+}
+.stat span { 
+    color: var(--highlight-gold); 
+    font-size: 1.8rem; 
+}
+
+/* 3D Chunky Buttons */
+.btn-primary, .up-btn, .sell-btn, .spell-btn {
+    font-family: 'Fredoka', sans-serif;
+    border: 3px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.1s ease;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+    color: white;
+}
+
+.btn-primary {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background: linear-gradient(180deg, var(--accent-red-hover) 0%, var(--accent-red) 100%);
+    box-shadow: 0 6px 0 #7a150a, 0 8px 10px rgba(0,0,0,0.4);
+}
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(180deg, #ff6b5a 0%, var(--accent-red-hover) 100%);
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 #7a150a, 0 6px 8px rgba(0,0,0,0.4);
+}
+.btn-primary:active:not(:disabled) {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #7a150a, 0 2px 4px rgba(0,0,0,0.4);
+}
+.btn-primary:disabled { 
+    background: #7f8c8d; 
+    box-shadow: 0 6px 0 #2c3e50; 
+    color: #ccc;
+    cursor: not-allowed; 
+}
+
+#main-layout { display: flex; gap: 20px; align-items: flex-start; }
+
+#game-section { display: flex; flex-direction: column; gap: 20px; }
+
+canvas {
+    background-color: var(--canvas-bg);
+    background-image: 
+        radial-gradient(#4b7a29 15%, transparent 16%),
+        radial-gradient(#4b7a29 15%, transparent 16%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px; /* Checker grass pattern over green base */
+    border-radius: 12px;
+    border: 6px solid var(--border-color);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    display: block;
+}
+
+/* Spells layout */
+#spells-bar { display: flex; gap: 20px; }
+
+.spell-btn {
+    flex: 1;
+    padding: 18px;
+    font-size: 1.2rem;
+    background: linear-gradient(180deg, #9b59b6 0%, #8e44ad 100%);
+    box-shadow: 0 6px 0 #4a235a, 0 8px 10px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
+.spell-btn:hover:not(:disabled) { 
+    background: linear-gradient(180deg, #am71c9 0%, #9b59b6 100%);
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 #4a235a, 0 6px 8px rgba(0,0,0,0.4);
+}
+.spell-btn:active:not(:disabled) {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #4a235a;
+}
+.spell-btn.active-target { 
+    border-color: var(--highlight-gold); 
+    box-shadow: 0 0 15px var(--highlight-gold), 0 6px 0 #4a235a;
+    transform: scale(1.02); 
+}
+.cooldown-overlay {
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+    height: 0%;
+    pointer-events: none;
+    transition: height 0.1s linear;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 260px;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 695px; /* Matches canvas 600 + gap 20 + spell 75 */
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-header { 
+    margin: 0 0 20px 0; 
+    color: var(--highlight-gold); 
+    border-bottom: 3px solid var(--border-color); 
+    padding-bottom: 10px; 
+    text-align: center;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 0 #000;
+}
+
+/* Shop Card Items */
+.shop-item {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+    border: 3px solid #1abc9c;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.shop-item:hover { 
+    transform: scale(1.05) translateY(-2px); 
+    box-shadow: 0 8px 12px rgba(0,0,0,0.5);
+    border-color: var(--highlight-gold);
+}
+.shop-item:active { cursor: grabbing; }
+
+.shop-item h4 { margin: 0 0 4px 0; font-size: 1.3rem; color: var(--text-white); }
+.shop-item p { margin: 0; font-size: 0.85rem; color: #bdc3c7; }
+.shop-item .cost { font-size: 1.2rem; font-weight: bold; color: var(--highlight-gold); text-shadow: 1px 1px 0 #000;}
+
+/* Upgrade Panel */
+#upgrade-panel {
+    margin-top: auto;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px dashed var(--highlight-gold);
+    text-align: center;
+}
+#upgrade-panel h3 { margin: 0 0 10px 0; color: var(--highlight-gold); font-size: 1.5rem; text-shadow: 1px 1px 0 #000;}
+#upgrade-target-name { margin: 0 0 15px 0; font-weight: bold; font-size: 1.1rem; color: #fff;}
+
+.up-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    background: linear-gradient(180deg, var(--accent-blue-hover) 0%, var(--accent-blue) 100%);
+    box-shadow: 0 5px 0 #154360;
+}
+.up-btn:hover:not(:disabled) { 
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #154360;
+}
+.up-btn:active:not(:disabled) {
+    transform: translateY(5px);
+    box-shadow: 0 0px 0 #154360;
+}
+.up-btn:disabled { 
+    background: #7f8c8d; box-shadow: 0 5px 0 #2c3e50; 
+    color: #bdc3c7;
+    opacity: 0.8; 
+}
+
+.sell-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background: linear-gradient(180deg, var(--accent-red-hover) 0%, var(--accent-red) 100%);
+    box-shadow: 0 5px 0 #7a150a;
+    margin-top: 15px;
+}
+.sell-btn:hover { 
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #7a150a;
+}
+.sell-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 0px 0 #7a150a;
+}
