@@ -26,26 +26,6 @@ Chào mừng bạn đến với **Advanced Tower Defense** - dự án game Thủ
 ## 📂 Cấu Trúc File Code Nâng Cao
 Game đã được Tái cấu trúc chuẩn OOP chuyên nghiệp rất dễ hiểu, không còn nguyên tảng Monolithic như các project sinh viên. Rất dễ dàng nếu bạn muốn copy mã nguồn để xài cho đồ án hoặc mở rộng làm game bán:
 
-```text
-📁 Game_TowerDefenseBasic/
-  ├── 📄 index.html                -> Giao diện gắn lưới khung và nhúng Scripts 
-  ├── 📁 css/
-  │    └── 📄 style.css            -> Bản thiết kế khung 3D phong cách viễn tưởng giả gỗ 
-  ├── 📁 img/
-  │    └── 🖼️ tower_basic.png / ... -> Ảnh Assets Sprite cực net (trong suốt đã bóc tách nền)
-  ├── 📁 js/
-  │    ├── 📄 config.js            -> Bảng biến số môi trường, cấu hình game, đường path quái 
-  │    ├── 📄 main.js              -> Loop Frame, Check Event lướt chuột, Render 
-  │    ├── 📁 entities/
-  │    │     ├── 📄 Enemy.js       -> Logic Quái Vật (Máu, Aura, Kháng)
-  │    │     ├── 📄 Tower.js       -> Chứa đai bản doanh Tháp, vẽ tia đạn
-  │    │     └── 📄 Projectile.js  -> Tính góc quay đuổi đạn mượt mà
-  │    └── 📁 systems/
-  │          ├── 📄 Managers.js    -> Controller xử lý Wave, Điểm nâng cấp, và Giá tiền Move
-  │          └── 📄 Particles.js   -> Máy tạo các Hiệu ứng tàn lửa, Nổ bùm, Chữ nhẩy Bonus  
-```
-
----
 
 ## 🛠️ Hướng Dẫn Cài Đặt và Sử Dụng
 
