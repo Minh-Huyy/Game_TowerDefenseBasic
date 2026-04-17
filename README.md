@@ -23,10 +23,6 @@ Chào mừng bạn đến với **Advanced Tower Defense** - dự án game Thủ
 
 ---
 
-## 📂 Cấu Trúc File Code Nâng Cao
-Game đã được Tái cấu trúc chuẩn OOP chuyên nghiệp rất dễ hiểu, không còn nguyên tảng Monolithic như các project sinh viên. Rất dễ dàng nếu bạn muốn copy mã nguồn để xài cho đồ án hoặc mở rộng làm game bán:
-
-
 ## 🛠️ Hướng Dẫn Cài Đặt và Sử Dụng
 
 Khoá học cài đặt siêu tốc: Bạn **không cần** bất kỳ môi trường Node.js hay Server Apache nào!
